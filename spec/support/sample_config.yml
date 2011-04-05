@@ -1,0 +1,6 @@
+app_name: "AppConfig"
+admin_credentials:
+  username: admin
+  password: pass
+mail_server: "dev.mailserver.com"
+worker_count: 2

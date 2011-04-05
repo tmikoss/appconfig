@@ -1,0 +1,20 @@
+common: &common
+  app_name: "AppConfig"
+  admin_credentials:
+    username: admin
+  worker_count: 2
+development:
+  <<: *common
+  mail_server: "dev.mailserver.com"
+  admin_credentials:
+    password: devpass
+test:
+  <<: *common
+  mail_server: "test.mailserver.com"
+  admin_credentials:
+    password: testpass
+production:
+  <<: *common
+  mail_server: "prod.mailserver.com"
+  admin_credentials:
+    password: prodpass
