@@ -9,9 +9,8 @@ class SampleConfig
     @value = options[:value]
   end
   
-  def create(options = {})
-    initialize(options)
-    @@storage << self
+  def self.create(options = {})
+    @@storage << SampleConfig.new(options)
   end
   
   def self.all

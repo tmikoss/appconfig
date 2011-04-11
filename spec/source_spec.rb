@@ -16,6 +16,21 @@ describe "Appconfig source setup" do
     end
   end
   
+  describe "Adding ActiveRecord model source" do
+    it "when passed a class that responds to slef.all, should treat it as a ActiveRecord model" do
+      AppConfig::Source.add(SampleConfig)
+      AppConfig::Source.list.size.should == 1
+      AppConfig::Source.list.first.should be_is_a AppConfig::ModelSource
+    end
+    
+    it "when passed a class that does not respond to slef.all, should not treat it as a ActiveRecord model" do
+      lambda{
+        AppConfig::Source.add(Object)
+      }.should raise_error
+      AppConfig::Source.list.should be_empty
+    end
+  end
+  
   describe "Adding unknown source" do
     it "should raise error when adding a source that does not match any known sources" do
       lambda{

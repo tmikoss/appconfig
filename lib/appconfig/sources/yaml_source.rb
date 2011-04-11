@@ -1,8 +1,13 @@
 module AppConfig
   class YamlSource < Source
     def initialize(options = {})
-      yaml_structure = YAML.load(File.open options[:file])
-      @hash          = options[:env] ? yaml_structure[options[:env]] : yaml_structure
+      @filename  = options[:file]
+      @namespace = options[:env]
+    end
+    
+    def reload_data!
+      yaml_structure = YAML.load(File.open @filename)
+      @hash          = @namespace ? yaml_structure[@namespace] : yaml_structure
     end
   end
 end

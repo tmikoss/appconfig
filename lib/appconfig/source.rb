@@ -15,6 +15,9 @@ module AppConfig
         #YAML
         raise "File #{source_object} could not be located" unless File.exist? source_object
         add_source(YamlSource.new(options.merge(:file => source_object)))
+      elsif source_object.is_a?(Class) && source_object.respond_to?(:all)
+        #AR Model
+        add_source(ModelSource.new(options.merge(:class => source_object)))
       else  
         raise 'Could not match source object to any known types'
       end
@@ -35,6 +38,7 @@ module AppConfig
       cache = {}
       
       @@sources.each do |source|
+        source.reload_data!
         cache = cache.merge(source.to_hash)
       end
       
