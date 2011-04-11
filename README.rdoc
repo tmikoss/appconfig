@@ -36,7 +36,7 @@ Configuration sources are stacked in the order of being added:
 
 Configuration values are cached at the moment of being added. If sources are modified (for example, configuration values stored in database change), data can be refreshed via:
 
-AppConfig::Source.reload_sources!
+  AppConfig::Source.reload_sources!
 
 == Contributing to appconfig
  
