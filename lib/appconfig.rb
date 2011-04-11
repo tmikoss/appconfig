@@ -1,7 +1,7 @@
 require 'yaml'
-require 'hash_extension'
-require 'appconfig/setup'
 require 'appconfig/retrieval'
+require 'appconfig/source'
+require 'appconfig/sources/yaml_source'
 
 module AppConfig
   @@cache = {}
