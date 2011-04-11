@@ -1,4 +1,4 @@
-module AppConfig
+module AppCfg
   class ModelSource < Source
     def initialize(options = {})
       @model_class = options[:class]

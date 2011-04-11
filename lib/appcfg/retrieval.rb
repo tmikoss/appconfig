@@ -1,4 +1,4 @@
-module AppConfig
+module AppCfg
   def self.[](key)
     if @@cache.respond_to?(key)
       @@cache.send(key)

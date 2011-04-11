@@ -1,4 +1,4 @@
-app_name: "AppConfig"
+app_name: "AppCfg"
 admin_credentials:
   username: admin
   password: pass

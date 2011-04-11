@@ -1,4 +1,4 @@
-module AppConfig
+module AppCfg
   class YamlSource < Source
     def initialize(options = {})
       @filename  = options[:file]

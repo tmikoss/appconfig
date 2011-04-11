@@ -6,37 +6,37 @@ A gem for centralizing different sources of application configuration data. Supp
 
 === Adding configuration sources
 
-[From YAML file]            AppConfig::Source.add('/path/to/configuration.yml')
+[From YAML file]            AppCfg::Source.add('/path/to/configuration.yml')
 
-[From namespaced YAML file] AppConfig::Source.add('/path/to/configuration.yml', :env => Rails.env)
+[From namespaced YAML file] AppCfg::Source.add('/path/to/configuration.yml', :env => Rails.env)
 
-[From ActiveRecord model]   AppConfig::Source.add(ConfigurationModel)
+[From ActiveRecord model]   AppCfg::Source.add(ConfigurationModel)
 
-[From hash object]          AppConfig::Source.add({:some_key => 'value'})
+[From hash object]          AppCfg::Source.add({:some_key => 'value'})
 
 === Accessing configuration values
 
-Configuration data can be accessed via both object and hash syntax, called on AppConfig module:
+Configuration data can be accessed via both object and hash syntax, called on AppCfg module:
 
-  AppConfig.some_key # => 'value'
-  AppConfig['some_key'] # => 'value'
+  AppCfg.some_key # => 'value'
+  AppCfg['some_key'] # => 'value'
 
 Note that these options differ when trying to access inexistent key:
 
-  AppConfig.wrong_key # => raises exception
-  AppConfig['wrong_key'] # => nil
+  AppCfg.wrong_key # => raises exception
+  AppCfg['wrong_key'] # => nil
 
 === Overwriting and reloading
 
 Configuration sources are stacked in the order of being added:
 
-  AppConfig::Source.add({:some_key => 'some value'})
-  AppConfig::Source.add({:some_key => 'other value'})
-  AppConfig.some_key # => 'other value'
+  AppCfg::Source.add({:some_key => 'some value'})
+  AppCfg::Source.add({:some_key => 'other value'})
+  AppCfg.some_key # => 'other value'
 
 Configuration values are cached at the moment of being added. If sources are modified (for example, configuration values stored in database change), data can be refreshed via:
 
-  AppConfig::Source.reload_sources!
+  AppCfg::Source.reload_sources!
 
 == Contributing to appconfig
  

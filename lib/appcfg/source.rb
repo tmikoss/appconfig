@@ -1,4 +1,4 @@
-module AppConfig
+module AppCfg
   class Source
     @@sources = []
     
@@ -42,7 +42,7 @@ module AppConfig
         cache = cache.merge(source.to_hash)
       end
       
-      AppConfig.class_variable_set '@@cache', hash_to_object(cache)
+      AppCfg.class_variable_set '@@cache', hash_to_object(cache)
     end
     
     private
@@ -57,7 +57,7 @@ module AppConfig
       mod = Module.new do
         hash.each_pair do |key, value|
           define_method key do
-            value.is_a?(Hash) ? AppConfig::Source.hash_to_object(value) : value
+            value.is_a?(Hash) ? AppCfg::Source.hash_to_object(value) : value
           end
         end
       end

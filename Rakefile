@@ -12,7 +12,7 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "appconfig"
+  gem.name = "appcfg"
   gem.homepage = "http://github.com/tmikoss/appconfig"
   gem.license = "MIT"
   gem.summary = %Q{A gem for centralizing different sources of application configuration data.}
@@ -44,7 +44,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "appconfig #{version}"
+  rdoc.title = "appcfg #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
