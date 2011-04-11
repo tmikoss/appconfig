@@ -31,6 +31,14 @@ describe "Appconfig source setup" do
     end
   end
   
+  describe "Adding simple hash model source" do
+    it "when passed a hash object, should treat it as simple hash source" do
+      AppConfig::Source.add({:foo => 'bar'})
+      AppConfig::Source.list.size.should == 1
+      AppConfig::Source.list.first.should be_is_a AppConfig::Source
+    end
+  end
+  
   describe "Adding unknown source" do
     it "should raise error when adding a source that does not match any known sources" do
       lambda{

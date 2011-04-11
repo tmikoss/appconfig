@@ -3,11 +3,15 @@ module AppConfig
     @@sources = []
     
     def initialize(options={})
-      @hash = {}
+      @hash = options
     end
     
     def to_hash
       @hash
+    end
+    
+    def reload_data!
+      #Do nothing
     end
     
     def self.add(source_object, options={})
@@ -18,7 +22,10 @@ module AppConfig
       elsif source_object.is_a?(Class) && source_object.respond_to?(:all)
         #AR Model
         add_source(ModelSource.new(options.merge(:class => source_object)))
-      else  
+      elsif source_object.is_a?(Hash)
+        #Simple hash
+        add_source(Source.new(source_object))
+      else
         raise 'Could not match source object to any known types'
       end
     end
