@@ -34,13 +34,6 @@ module AppConfig
       @@sources
     end
     
-    private
-    
-    def self.add_source(source)
-      @@sources << source
-      reload_sources!
-    end
-    
     def self.reload_sources!
       cache = {}
       
@@ -50,6 +43,13 @@ module AppConfig
       end
       
       AppConfig.class_variable_set '@@cache', hash_to_object(cache)
+    end
+    
+    private
+    
+    def self.add_source(source)
+      @@sources << source
+      reload_sources!
     end
     
     #Credit to http://blog.jayfields.com/2008/01/ruby-hashtomod.html

@@ -1,15 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe "Appconfig retrieval from AR model" do
-  before(:all) do
+describe "Appconfig retrieval from AR model" do  
+  before(:each) do
     SampleConfig.create(:key => 'app_name', :value => 'AppConfig')
     SampleConfig.create(:key => 'admin_credentials', :value => {'username' => 'admin', 'password' => 'testpass'})
-  end
-  
-  before(:each) do
     AppConfig::Source.add(SampleConfig)
   end
-  
+
   it "should support hash syntax for access" do
     AppConfig['app_name'].should == 'AppConfig'
   end
