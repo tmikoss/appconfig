@@ -83,7 +83,7 @@ describe "Appconfig source setup" do
       SampleConfig.create(:key => 'something_else', :value => 'something')
       
       lambda{
-        SampleConfig.something_else
+        AppConfig.something_else
       }.should raise_error
     end
     
@@ -97,7 +97,7 @@ describe "Appconfig source setup" do
       
       AppConfig::Source.reload_sources!
       
-      SampleConfig.something_else.should == 'something_else'
+      AppConfig.something_else.should == 'something'
     end
   end
 end
