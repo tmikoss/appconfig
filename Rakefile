@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "appconfig"
   gem.homepage = "http://github.com/tmikoss/appconfig"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A gem for centralizing different sources of application configuration data.}
+  gem.description = %Q{A gem for centralizing different sources of application configuration data. Supports YAML files, ActiveRecord models and simple hashes as data sources.}
   gem.email = "toms.mikoss@gmail.com"
   gem.authors = ["Toms Mikoss"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
