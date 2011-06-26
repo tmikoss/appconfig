@@ -14,7 +14,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   config.before(:each) do
-    AppCfg::Source.class_variable_set '@@sources', []
+    AppCfg::Source.clear
     @sample_env_yaml_file_path = File.expand_path(File.dirname(__FILE__) + '/support/sample_env_config.yml')
     @sample_yaml_file_path     = File.expand_path(File.dirname(__FILE__) + '/support/sample_config.yml')
   end
