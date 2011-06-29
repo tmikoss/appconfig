@@ -1,4 +1,8 @@
 module AppCfg
+  def self.set_cache data
+    @@cache = data
+  end
+
   class Source
     @@sources = []
     
@@ -29,6 +33,11 @@ module AppCfg
         raise 'Could not match source object to any known types'
       end
     end
+
+    def self.clear
+      @@sources = []
+      reload_sources!
+    end
     
     def self.list
       @@sources
@@ -42,7 +51,7 @@ module AppCfg
         cache = cache.merge(source.to_hash)
       end
       
-      AppCfg.class_variable_set '@@cache', hash_to_object(cache)
+      AppCfg.set_cache hash_to_object(cache)
     end
     
     private
