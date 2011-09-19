@@ -69,7 +69,7 @@ describe "AppCfg retrieval from YAML" do
       AppCfg::Source.add(@sample_env_yaml_file_path, :env => 'bogus')
     end
 
-    if "should load but be empty" do
+    it "should load but be empty" do
       AppCfg['app_name'].should == nil
     end
   end
