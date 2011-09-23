@@ -64,4 +64,34 @@ describe "AppCfg retrieval from YAML" do
       }.should raise_error
     end
   end
+  describe "environment namespaced (but namespace not found)" do
+    before(:each) do
+      AppCfg::Source.add(@sample_env_yaml_file_path, :env => 'bogus')
+    end
+
+    it "should load but be empty" do
+      AppCfg['app_name'].should == nil
+    end
+  end
+end
+describe "AppCfg retrieval from empty YAML" do
+  describe "not environment namespaced" do
+    before(:each) do
+      AppCfg::Source.add(@sample_yaml_empty_file_path)
+    end
+    
+    it "should load but be empty" do
+      AppCfg['app_name'].should == nil
+    end
+  end
+
+  describe "environment namespaced" do
+    before(:each) do
+      AppCfg::Source.add(@sample_yaml_empty_file_path, :env => 'test')
+    end
+    
+    it "should load but be empty" do
+      AppCfg['app_name'].should == nil
+    end
+  end
 end
