@@ -18,6 +18,9 @@ RSpec.configure do |config|
     @sample_env_yaml_file_path = File.expand_path(File.dirname(__FILE__) + '/support/sample_env_config.yml')
     @sample_yaml_file_path     = File.expand_path(File.dirname(__FILE__) + '/support/sample_config.yml')
     @sample_yaml_empty_file_path     = File.expand_path(File.dirname(__FILE__) + '/support/sample_empty_config.yml')
+
+    @sample_properties_file_path     = File.expand_path(File.dirname(__FILE__) + '/support/sample_config.properties')
+    @sample_properties_empty_file_path     = File.expand_path(File.dirname(__FILE__) + '/support/sample_empty_config.properties')
   end
   
   config.after(:each) do
