@@ -6,8 +6,8 @@ module AppCfg
     end
     
     def reload_data!
-      yaml_structure = YAML.load(File.open @filename)
-      @hash          = @namespace ? yaml_structure[@namespace] : yaml_structure
+      yaml_structure = YAML.load(File.open @filename) || {} # empty hash instead of false when file is empty
+      @hash          = @namespace ? yaml_structure[@namespace]||{} : yaml_structure
     end
   end
 end
