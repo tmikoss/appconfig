@@ -23,6 +23,10 @@ module AppCfg
         #YAML
         raise "File #{source_object} could not be located" unless File.exist? source_object
         add_source(YamlSource.new(options.merge(:file => source_object)))
+      elsif source_object.is_a?(String) && source_object[-11..-1] == '.properties'
+        #.properties
+        raise "File #{source_object} could not be located" unless File.exist? source_object
+        add_source(PropertiesSource.new(options.merge(:file => source_object)))
       elsif source_object.is_a?(Class) && source_object.respond_to?(:all)
         #AR Model
         add_source(ModelSource.new(options.merge(:class => source_object)))
