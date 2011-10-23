@@ -14,6 +14,8 @@ A gem for centralizing different sources of application configuration data. Supp
 
 [From hash object]          AppCfg::Source.add({:some_key => 'value'})
 
+[From .properties file (features missing! Refer to pending tests)]     AppCfg::Source.add('/path/to/configuration.properties')
+
 === Accessing configuration values
 
 Configuration data can be accessed via both object and hash syntax, called on AppCfg module:
@@ -47,6 +49,10 @@ Configuration values are cached at the moment of being added. If sources are mod
 * Commit and push until you are happy with your contribution
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Contributors
+
+* lorrin (Lorrin Nelson)
 
 == Copyright
 
