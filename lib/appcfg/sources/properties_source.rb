@@ -10,7 +10,7 @@ module AppCfg
     end
 
     def reload_data!
-      properties = JavaProperties.new(File.open @filename)
+      properties = JavaProperties.new(@filename)
       @hash = properties.properties
     end
   end
@@ -24,17 +24,14 @@ module AppCfg
   #
   # Consider checking for presence of JRuby and invoking java.util.Properties if available.
   class JavaProperties
-    attr_accessor :file, :properties
+    attr_accessor :filename, :properties
 
-    def initialize(file)
-      @file = file
+    def initialize(filename)
+      @filename = filename
       @properties = {}
 
-      begin
-        IO.foreach(file) do |line|
-          @properties[$1.strip] = $2 if line = ~ /([^=]*)=(.*)\/\/(.*)/ || line =~ /([^=]*)=(.*)/
-        end
-      rescue
+      IO.foreach(@filename) do |line|
+        @properties[$1.strip] = $2 if line = ~ /([^=]*)=(.*)\/\/(.*)/ || line =~ /([^=]*)=(.*)/
       end
     end
 
@@ -55,7 +52,7 @@ module AppCfg
     end
 
     def save
-      file = File.new(@file, "w+")
+      file = File.new(@filename, "w+")
       @properties.each { |key, value| file.puts "#{key}=#{value}\n" }
       file.close
     end
