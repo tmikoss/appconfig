@@ -1,0 +1,4 @@
+admin_credentials:
+  enabled: false
+  password: newpass
+worker_count: 4

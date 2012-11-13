@@ -20,8 +20,9 @@ RSpec.configure do |config|
     @sample_yaml_empty_file_path       = File.expand_path(File.dirname(__FILE__) + '/support/sample_empty_config.yml')
     @sample_properties_file_path       = File.expand_path(File.dirname(__FILE__) + '/support/sample_config.properties')
     @sample_properties_empty_file_path = File.expand_path(File.dirname(__FILE__) + '/support/sample_empty_config.properties')
+    @sample_overlapping_file_path      = File.expand_path(File.dirname(__FILE__) + '/support/sample_overlapping_config.yml')
   end
-  
+
   config.after(:each) do
     SampleConfig.reset_storage!
   end
