@@ -5,19 +5,19 @@ module AppCfg
 
   class Source
     @@sources = []
-    
+
     def initialize(options={})
       @hash = options
     end
-    
+
     def to_hash
       @hash
     end
-    
+
     def reload_data!
       #Do nothing
     end
-    
+
     def self.add(source_object, options={})
       if source_object.is_a?(String) && source_object[-4..-1] == '.yml'
         #YAML
@@ -42,44 +42,58 @@ module AppCfg
       @@sources = []
       reload_sources!
     end
-    
+
     def self.list
       @@sources
     end
-    
+
     def self.reload_sources!
       cache = {}
-      
+
       @@sources.each do |source|
         source.reload_data!
-        cache = cache.merge(source.to_hash)
+        cache = recursive_merge(cache, source.to_hash)
       end
-      
-      AppCfg.set_cache hash_to_object(cache)
+
+      AppCfg.set_cache add_key_methods cache
     end
-    
+
     private
-    
+
     def self.add_source(source)
       @@sources << source
       reload_sources!
     end
-    
-    #Credit to http://blog.jayfields.com/2008/01/ruby-hashtomod.html
-    def self.hash_to_object(hash)
+
+    def self.recursive_merge(base, other)
+      other.each do |key, value|
+        if base[key].is_a?(Hash) && value.is_a?(Hash)
+          base[key] = recursive_merge(base[key], value)
+        else
+          base[key] = value
+        end
+      end
+
+      base
+    end
+
+    def self.add_key_methods(base)
       mod = Module.new do
-        hash.each_pair do |key, value|
+        base.each do |key, value|
           define_method key do
-            value.is_a?(Hash) ? AppCfg::Source.hash_to_object(value) : value
+            value
           end
         end
       end
-      
-      new_hash = hash.dup
-      
-      new_hash.extend mod
-      
-      new_hash
+
+      base.extend mod
+
+      base.each do |key, value|
+        next unless value.is_a? Hash
+        base[key] = add_key_methods(value)
+      end
+
+      base
     end
   end
 end

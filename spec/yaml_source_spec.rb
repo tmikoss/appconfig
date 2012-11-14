@@ -76,7 +76,7 @@ describe "AppCfg retrieval from YAML" do
 
   describe "overlapping config files" do
     before(:each) do
-      AppCfg::Source.add(@sample_env_yaml_file_path)
+      AppCfg::Source.add(@sample_yaml_file_path)
       AppCfg::Source.add(@sample_overlapping_file_path)
     end
 
