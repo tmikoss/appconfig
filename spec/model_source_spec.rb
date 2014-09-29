@@ -4,6 +4,7 @@ describe "AppCfg retrieval from AR model" do
   before(:each) do
     SampleConfig.create(:key => 'app_name', :value => 'AppCfg')
     SampleConfig.create(:key => 'admin_credentials', :value => {'username' => 'admin', 'password' => 'testpass'})
+    SampleConfig.create(:key => 'admin1.credentials', :value => {'username' => 'admin1', 'password' => 'testpass1'})
     AppCfg::Source.add(SampleConfig)
   end
 
@@ -21,6 +22,10 @@ describe "AppCfg retrieval from AR model" do
   
   it "should allow multi-level access with object syntax" do
     AppCfg.admin_credentials.username.should == 'admin'
+  end
+  
+  it "should allow multi-level access with dotted key syntax" do
+    AppCfg.admin1.credentials.username.should == 'admin1'
   end
   
   it "should return nil on non-existent key, hash syntax" do
