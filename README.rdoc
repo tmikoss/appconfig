@@ -41,7 +41,7 @@ Configuration values are cached at the moment of being added. If sources are mod
   AppCfg::Source.reload_sources!
 
 == Contributing to appconfig
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
@@ -52,10 +52,10 @@ Configuration values are cached at the moment of being added. If sources are mod
 
 == Contributors
 
-* lorrin (Lorrin Nelson)
+* @lorrin
+* @ksz2k
 
 == Copyright
 
 Copyright (c) 2011 Toms Mikoss. See LICENSE.txt for
 further details.
-
